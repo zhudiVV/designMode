@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>单例</title>
+	</head>
+	<body>
+		<div>
+			单例
+		</div>
+	</body>
+	
+	<script>
+		// var myImage = (function(){
+		// 	var imgNode = document.createElement( 'img' );
+		// 	document.body.appendChild( imgNode );
+		// 	return {
+		// 		setSrc: function( src ){
+		// 			imgNode.src = src;
+		// 		}
+		// 	}
+		// })();
+		
+		// var proxyImage = (function(){
+		// 	var img = new Image;
+		// 	img.onload = function(){
+		// 		myImage.setSrc( this.src );
+		// 	}
+		// 	return {
+		// 		setSrc: function( src ){
+		// 			myImage.setSrc( 'file:// /C:/Users/svenzeng/Desktop/loading.gif' );
+		// 			img.src = src;
+		// 		}
+		// 	}
+		// })();
+		// proxyImage.setSrc( 'https://volunteer.cdn-go.cn/404/latest/img/dream4school.jpg' );
+		var mult = function() {
+			var a = 1;
+			for(var i = 0; i < arguments.length; i++) {
+				a = a * arguments[i]
+			}
+			return a
+		}
+		
+		var proxMult = (function() {
+			var cache = {}
+			return function() {
+				var args = Array.prototype.join.call(arguments, ',');
+				if(args in cache) {
+					return cache[args]
+				}
+				return cache[args] = mult.apply(this, arguments)
+			}
+		})()
+		
+		console.dir(proxMult(1, 2, 3, 4));
+		console.dir(proxMult(1, 2, 3, 4));
+	</script>
+</html>
