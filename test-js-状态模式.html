@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>each</title>
+	</head>
+	<body>
+	</body>
+	<script>
+		var each = function(ary, callback) {
+			// console.log('-----')
+			// console.dir(ary)
+			// for ( var i = 0, l = ary.length; i < l; i++ ){
+			for(var i = 0; i < ary.length; i++) {
+				// console.dir(callback)
+				callback(i, ary[i])
+			}
+		}
+		each([1, 2, 3, 4], function(i, n){
+			console.log([i, n])
+		})
+	</script>
+</html>
